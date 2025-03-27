@@ -34,4 +34,10 @@ Prestep for DigitalOcean:
 
 
 ### Tips:
-Use `curl ifconfig.me` to get the public IP on DigitalOcean or your local device
+* Use `curl ifconfig.me` to get the public IP on DigitalOcean or your local device
+
+
+*If you get a "KeyError: 'ContainerConfig'" error, run the following commands to **destroy everything and start from scratch** (DO NOT DO THIS WILLY NILLY)
+`docker-compose down -v
+docker-compose build --no-cache
+docker-compose up -d`
