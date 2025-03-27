@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx_rtmp
+    ports:
+      - "1935:1935"
+
+  python-capture:
+    build:
+      context: ./app
+    container_name: pTIPS_monitor
+    depends_on:
+      - nginx
+    volumes:
+      - ./app/frames:/app/frames
