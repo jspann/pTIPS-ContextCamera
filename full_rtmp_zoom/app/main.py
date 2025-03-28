@@ -9,10 +9,11 @@ def save_frames():
     container = av.open("rtmp://nginx/live/stream")
 
     for frame in container.decode(video=0):
-        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
-        filename = f"frames/frame_{timestamp}.jpg"
-        frame.to_image().save(filename)
-        print(f"Saved {filename}")
+        if (int(datetime.utcnow().strftime("%S")) % 5) == 0: ## every 5 seconds
+            timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
+            filename = f"frames/frame_{timestamp}.jpg"
+            frame.to_image().save(filename)
+            print(f"Saved {filename}")
 
 if __name__ == "__main__":
     print("Monitor Started")
